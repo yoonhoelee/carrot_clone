@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "117255049762",
+    "project_id": "carrot-clone-app-e961f",
+    "storage_bucket": "carrot-clone-app-e961f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:117255049762:android:805a4b86dbdb1d0ab7707b",
+        "android_client_info": {
+          "package_name": "com.example.carrot_clone_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "117255049762-mr45r8ukhr1qsp28jduj0c63gud3585p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwkA6uB7o8OYElxVHAozwe4ERRB5DL5Nk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "117255049762-mr45r8ukhr1qsp28jduj0c63gud3585p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
