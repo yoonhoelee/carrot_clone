@@ -1,4 +1,7 @@
+import 'package:carrot_clone_app/LoginScreen/login_screen.dart';
+import 'package:carrot_clone_app/SignUpScreen/sign_up_screen.dart';
 import 'package:carrot_clone_app/WelcomeScreen/background.dart';
+import 'package:carrot_clone_app/Widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeBody extends StatelessWidget {
@@ -25,6 +28,20 @@ class WelcomeBody extends StatelessWidget {
           Image.asset(
             'assets/icons/chat.png',
             height: size.height * 0.4,
+          ),
+          RoundedButton(
+            text: 'LOGIN',
+            press: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()));
+            },
+          ),
+          RoundedButton(
+            text: 'SIGN UP',
+            press: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => SignUpScreen()));
+            },
           ),
         ],
       ),
