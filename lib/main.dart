@@ -1,3 +1,4 @@
+import 'package:carrot_clone_app/SplashScreen/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
       ),
-      home: const Scaffold(),
+      home: SplashScreen(),
     );
   }
 }
