@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 class SignUpBackground extends StatelessWidget {
 
+  final Widget child;
+
+  SignUpBackground({required this.child});
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -36,7 +40,7 @@ class SignUpBackground extends StatelessWidget {
               width: size.width*0.2,
             ),
           ),
-
+          child,
         ],
       ),
     );
