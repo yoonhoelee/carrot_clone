@@ -14,25 +14,85 @@ class _SignUpBodyState extends State<SignUpBody> {
   File? _image;
   final signUpFormKey = GlobalKey<FormState>();
 
-  void getFromCamera() async{
-    XFile? pickedFile = await ImagePicker().pickImage(source: ImageSource.camera);
+  void _getFromCamera() async {
+    XFile? pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.camera);
     _cropImage(pickedFile!.path);
     Navigator.pop(context);
   }
 
-  void getFromGallery() async{
-    XFile? pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+  void _getFromGallery() async {
+    XFile? pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
     _cropImage(pickedFile!.path);
     Navigator.pop(context);
   }
 
-  void _cropImage(filePath) async{
-    CroppedFile? croppedImage = await ImageCropper().cropImage(sourcePath: filePath, maxHeight: 1080, maxWidth: 1080);
-    if(croppedImage != null){
+  void _cropImage(filePath) async {
+    CroppedFile? croppedImage = await ImageCropper()
+        .cropImage(sourcePath: filePath, maxHeight: 1080, maxWidth: 1080);
+    if (croppedImage != null) {
       setState(() {
         _image = File(croppedImage.path);
       });
     }
+  }
+
+  void _showImageDialog() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Please Choose an Option'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                InkWell(
+                  onTap: () {
+                    _getFromCamera();
+                  },
+                  child: Row(
+                    children: const [
+                      Padding(
+                        padding: EdgeInsets.all(4),
+                        child: Icon(
+                          Icons.camera,
+                          color: Colors.orange,
+                        ),
+                      ),
+                      const SizedBox(width: 4,),
+                      Text(
+                        'Camera',
+                        style: TextStyle(color: Colors.green),
+                      ),
+                    ],
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    _getFromGallery();
+                  },
+                  child: Row(
+                    children: const [
+                      Padding(
+                        padding: EdgeInsets.all(4),
+                        child: Icon(
+                          Icons.image,
+                          color: Colors.orange,
+                        ),
+                      ),
+                      const SizedBox(width: 4,),
+                      Text(
+                        'Gallery',
+                        style: TextStyle(color: Colors.green),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          );
+        });
   }
 
   @override
@@ -47,7 +107,9 @@ class _SignUpBodyState extends State<SignUpBody> {
             Form(
               key: signUpFormKey,
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  _showImageDialog();
+                },
                 child: CircleAvatar(
                   radius: screenWidth * 0.2,
                   backgroundColor: Colors.white24,
