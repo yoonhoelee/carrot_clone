@@ -237,7 +237,8 @@ class _SignUpBodyState extends State<SignUpBody> {
                 : RoundedButton(
                     text: 'Submit',
                     press: () {
-                      // todo submit for signup
+                      // submit for signup
+                      submitFormOnSignUp();
                     }),
             Align(
               alignment: Alignment.center,
