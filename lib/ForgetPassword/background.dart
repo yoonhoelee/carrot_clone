@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class ForgetBackground extends StatelessWidget {
 
-  // final Widget child;
-  //
-  // ForgetBackground({required this.child});
+  final Widget child;
+
+  ForgetBackground({required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class ForgetBackground extends StatelessWidget {
               width: size.width*0.2,
             ),
           ),
-          // child,
+          child,
         ],
       ),
     );

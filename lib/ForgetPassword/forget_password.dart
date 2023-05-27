@@ -1,4 +1,4 @@
-import 'package:carrot_clone_app/ForgetPassword/background.dart';
+import 'package:carrot_clone_app/ForgetPassword/body.dart';
 import 'package:flutter/material.dart';
 
 class ForgetPassword extends StatefulWidget {
@@ -11,7 +11,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ForgetBackground(),
+      body: ForgetBody(),
     );
   }
 }
