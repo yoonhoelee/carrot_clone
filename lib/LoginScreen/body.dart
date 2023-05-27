@@ -1,6 +1,7 @@
 import 'package:carrot_clone_app/DialogBox/error_dialog.dart';
 import 'package:carrot_clone_app/DialogBox/loading_dialog.dart';
 import 'package:carrot_clone_app/ForgetPassword/forget_password.dart';
+import 'package:carrot_clone_app/HomeScreen/home_screen.dart';
 import 'package:carrot_clone_app/LoginScreen/background.dart';
 import 'package:carrot_clone_app/SignUpScreen/sign_up_screen.dart';
 import 'package:carrot_clone_app/Widgets/already_have_an_account_check.dart';
@@ -43,6 +44,13 @@ class _LoginBodyState extends State<LoginBody> {
             return ErrorAlertDialog(message: error.message.toString());
           });
     });
+    if (currentUser != null) {
+      Navigator.pop(context);
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+    } else {
+      print('error');
+    }
   }
 
   @override
@@ -102,7 +110,17 @@ class _LoginBodyState extends State<LoginBody> {
             ),
             RoundedButton(
               text: 'Login',
-              press: () {},
+              press: () {
+                _emailController.text.isNotEmpty &&
+                        _passwordController.text.isNotEmpty
+                    ? _login()
+                    : showDialog(
+                        context: context,
+                        builder: (context) {
+                          return ErrorAlertDialog(
+                              message: 'Please write email and password');
+                        });
+              },
             ),
             SizedBox(
               height: size.height * 0.03,
