@@ -1,7 +1,12 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as Path;
+
+import '../Widgets/global_var.dart';
 
 class UploadAdScreen extends StatefulWidget {
   @override
@@ -13,12 +18,48 @@ class _UploadAdScreenState extends State<UploadAdScreen> {
   bool uploading = false;
   double val = 0;
   final List<File> _image = [];
+  List<String> urlList = [];
+  String name = '';
+  String phoneNo = '';
+  CollectionReference? imgRef;
 
   chooseImage() async {
     XFile? pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
     setState(() {
       _image.add(File(pickedFile!.path));
     });
+  }
+  Future uploadFile() async{
+    int i = 1;
+    for(var img in _image){
+      setState(() {
+        val = i / _image.length;
+      });
+      var ref = FirebaseStorage.instance.ref().child('image/${Path.basename(img.path)}');
+      await ref.putFile(img).whenComplete(() async{
+        await ref.getDownloadURL().then((value){
+          urlList.add(value);
+          i++;
+        });
+      });
+    }
+  }
+
+  getNameOfUser(){
+    FirebaseFirestore.instance.collection('users').doc(uid).get().then((snapshot) async{
+      if(snapshot.exists){
+        setState(() {
+          name = snapshot.data()!['userName'];
+          phoneNo = snapshot.data()!['userNumber'];
+        });
+      }
+    });
+  }
+  @override
+  void initState() {
+    super.initState();
+    getNameOfUser();
+    imgRef = FirebaseFirestore.instance.collection('imageUrls');
   }
 
   @override
